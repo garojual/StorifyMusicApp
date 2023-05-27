@@ -58,9 +58,9 @@ public class CrearArtistaVistaController {
 
 
         if ( (tipoArtista.getSelectedToggle() != null) && !nombre.equals("") && !nacionalidad.equals("") && !codigo.equals("") ){
-            System.out.println("Llene todos los campos");
-        }else {
             aplicacion.crearArtista(nombre, nacionalidad,codigo,isGrupo);
+        }else {
+            System.out.println("Llene todos los campos");
         }
 
 

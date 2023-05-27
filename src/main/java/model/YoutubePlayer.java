@@ -11,11 +11,11 @@ import netscape.javascript.JSObject;
 
 
 public class YoutubePlayer extends Application {
-    private String YOUTUBE_VIDEO_ID ;
+    private String YOUTUBE_VIDEO_ID = "nyuo9-OjNNg" ;
 
-    public YoutubePlayer(String youtube_video_id) {
+   /* public YoutubePlayer(String youtube_video_id) {
         YOUTUBE_VIDEO_ID = youtube_video_id;
-    }
+    }*/
 
     @Override
     public void start(Stage primaryStage) {

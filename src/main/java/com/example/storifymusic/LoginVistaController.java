@@ -28,7 +28,7 @@ public class LoginVistaController {
     private Label labelMusic;
 
     public void setAplicacion(HelloApplication helloApplication){
-        
+
         mainAnchorPane.setStyle("-fx-background-color: #f6f0ef"); //
         this.aplicacion= helloApplication;
     }

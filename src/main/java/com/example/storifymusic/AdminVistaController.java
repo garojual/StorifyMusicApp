@@ -28,4 +28,7 @@ public class AdminVistaController {
         aplicacion.devolverLogin();
 
     }
+
+    public void agregarCancion(ActionEvent event) {
+    }
 }

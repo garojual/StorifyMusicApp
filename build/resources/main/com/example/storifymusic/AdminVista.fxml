@@ -4,15 +4,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.AdminVistaController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.AdminVistaController">
    <children>
       <Button layoutX="542.0" layoutY="360.0" mnemonicParsing="false" onAction="#devolver" text="Atras" />
-      <Label alignment="CENTER" layoutX="240.0" layoutY="26.0" text="Administrador">
+      <Label alignment="CENTER" layoutX="196.0" layoutY="26.0" prefHeight="28.0" prefWidth="232.0" text="Interfaz Administrador">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="24.0" layoutY="121.0" mnemonicParsing="false" onAction="#crearArtista" text="Crear artista" />
-      <Button layoutX="24.0" layoutY="79.0" mnemonicParsing="false" text="Agregar Cancion" />
+      <Button layoutX="428.0" layoutY="145.0" mnemonicParsing="false" onAction="#crearArtista" prefHeight="35.0" prefWidth="155.0" text="Crear artista" />
+      <Button layoutX="428.0" layoutY="211.0" mnemonicParsing="false" onAction="#agregarCancion" prefHeight="35.0" prefWidth="155.0" text="Agregar Cancion" />
+      <TableView fx:id="tablaArtistas" layoutX="62.0" layoutY="100.0" prefHeight="200.0" prefWidth="294.0">
+        <columns>
+          <TableColumn fx:id="columnaNombre" prefWidth="147.0" text="Nombre" />
+          <TableColumn fx:id="columnaCodigo" prefWidth="146.0" text="Codigo" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

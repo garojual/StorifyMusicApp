@@ -90,9 +90,9 @@ public class UsuarioVistaController {
 
     @FXML
     public void reproducir(ActionEvent actionEvent){
-        /*YoutubePlayer youtubePlayer = new YoutubePlayer();
+        YoutubePlayer youtubePlayer = new YoutubePlayer();
         Stage stage = new Stage();
-        youtubePlayer.start(stage);*/
+        youtubePlayer.start(stage);
     }
 
     public void inOrderTraversal(ArbolBinario<Artista> arbol,Consumer<Artista> action) {
