@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.*;
@@ -47,7 +48,11 @@ public class UsuarioVistaController {
     @FXML
     private TableColumn<String,Cancion> colDuracion;
 
+    @FXML
+    private AnchorPane AnchorPaneUsuario;
+
     public void setUserName(Usuario userName) {
+        AnchorPaneUsuario.setStyle("-fx-background-color: #f6f0ef");
         this.userName = userName;
     }
 
@@ -85,9 +90,9 @@ public class UsuarioVistaController {
 
     @FXML
     public void reproducir(ActionEvent actionEvent){
-        YoutubePlayer youtubePlayer = new YoutubePlayer();
+        /*YoutubePlayer youtubePlayer = new YoutubePlayer();
         Stage stage = new Stage();
-        youtubePlayer.start(stage);
+        youtubePlayer.start(stage);*/
     }
 
     public void inOrderTraversal(ArbolBinario<Artista> arbol,Consumer<Artista> action) {
