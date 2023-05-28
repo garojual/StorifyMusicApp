@@ -51,7 +51,6 @@ public class UsuarioVistaController {
     @FXML
     private AnchorPane AnchorPaneUsuario;
 
-    private Reproductor reproductor = Reproductor.getReproductor();
 
     public void setUserName(Usuario userName) {
         AnchorPaneUsuario.setStyle("-fx-background-color: #f6f0ef");

@@ -1,12 +1,16 @@
 package model;
 
 
+import serializacion.Persistencia;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
 
 public class Reproductor implements Serializable {
+
+    private static volatile Reproductor instance;
 
     private HashMap<String,Usuario> tablaUsuarios = new HashMap<>();
     private HashMap<String,Administrador> tablaAdmin = new HashMap<>();
@@ -15,15 +19,21 @@ public class Reproductor implements Serializable {
     private ListaSimple<Artista> artistaInterfaz= new ListaSimple<>();
     private ListaSimple<Cancion> cancionesArtista = new ListaSimple<>();
 
-    private static Reproductor reproductor;
 
     private static final long serialVersionUID = 1L;
 
-    public static Reproductor getReproductor(){
-        if(reproductor == null){
-            reproductor = new Reproductor();
+    public static Reproductor getInstance(){
+        if (instance == null) {
+            synchronized (Reproductor.class) {
+                if (instance == null) {
+                    instance = Persistencia.deserializar();
+                    if (instance == null) {
+                        instance = new Reproductor();
+                    }
+                }
+            }
         }
-        return reproductor;
+        return instance;
     }
 
     public Reproductor() {
@@ -85,7 +95,7 @@ public class Reproductor implements Serializable {
 
     public boolean crearArtista(String nombre, String nacionalidad, String codigo, boolean duo) {
 
-        Artista art = new Artista(codigo,nombre,nacionalidad,duo);
+        Artista art = new Artista(nombre,codigo,nacionalidad,duo);
 
         if (arbolArtista.estaVacio()) {
             arbolArtista.insertar(art);

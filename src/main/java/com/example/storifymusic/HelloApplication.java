@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
-    private Reproductor reproductor = Persistencia.deserializar();
+    private Reproductor reproductor = Reproductor.getInstance();
     private Stage primaryStage;
 
     public static void main(String[] args) {

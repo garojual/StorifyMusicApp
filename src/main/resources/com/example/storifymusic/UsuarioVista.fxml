@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
+<AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
    <children>
       <TableView fx:id="tblCancionesUsuario" layoutX="21.0" layoutY="74.0" prefHeight="183.0" prefWidth="383.0">
         <columns>
@@ -16,12 +16,14 @@
       <Button layoutX="449.0" layoutY="342.0" mnemonicParsing="false" onAction="#reproducir" prefHeight="26.0" prefWidth="116.0" text="Reproducir " />
       <TextField layoutX="27.0" layoutY="298.0" prefHeight="10.0" prefWidth="102.0" text="Buscar" />
       <Button layoutX="168.0" layoutY="282.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="102.0" text="Agregar" />
-      <Button layoutX="170.0" layoutY="316.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
+      <Button layoutX="168.0" layoutY="318.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
       <Label layoutX="250.0" prefHeight="50.0" prefWidth="164.0" text="Storify Music" />
       <TableView layoutX="432.0" layoutY="72.0" prefHeight="259.0" prefWidth="148.0">
         <columns>
           <TableColumn prefWidth="147.60003662109375" text="Playlist" />
         </columns>
       </TableView>
+      <Button layoutX="300.0" layoutY="282.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Deshacer" />
+      <Button layoutX="300.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Rehacer" />
    </children>
 </AnchorPane>
