@@ -11,7 +11,7 @@ import netscape.javascript.JSObject;
 
 
 public class YoutubePlayer extends Application {
-    private String YOUTUBE_VIDEO_ID = "nyuo9-OjNNg" ;
+    private String YOUTUBE_VIDEO_ID = "pKAOVdnwCdU" ;
 
    /* public YoutubePlayer(String youtube_video_id) {
         YOUTUBE_VIDEO_ID = youtube_video_id;

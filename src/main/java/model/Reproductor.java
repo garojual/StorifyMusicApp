@@ -15,8 +15,16 @@ public class Reproductor implements Serializable {
     private ListaSimple<Artista> artistaInterfaz= new ListaSimple<>();
     private ListaSimple<Cancion> cancionesArtista = new ListaSimple<>();
 
+    private static Reproductor reproductor;
 
     private static final long serialVersionUID = 1L;
+
+    public static Reproductor getReproductor(){
+        if(reproductor == null){
+            reproductor = new Reproductor();
+        }
+        return reproductor;
+    }
 
     public Reproductor() {
         quemarDatosAdmin();

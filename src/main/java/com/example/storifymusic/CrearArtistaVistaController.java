@@ -9,11 +9,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import model.Genero;
-import model.ListaSimple;
+import model.*;
 
 import java.io.IOException;
 import java.util.EnumSet;
+import java.util.function.Consumer;
 
 public class CrearArtistaVistaController {
 
@@ -37,10 +37,14 @@ public class CrearArtistaVistaController {
     @FXML
     private ToggleGroup tipoArtista;
 
+    //private Reproductor reproductor = Reproductor.getReproductor();
+
 
 
     public void setAplicacion(HelloApplication aplicacion) {
         this.aplicacion = aplicacion;
+        aplicacion.getArtistas().inorden();
+
     }
 
     @FXML
@@ -59,12 +63,16 @@ public class CrearArtistaVistaController {
 
         if ( (tipoArtista.getSelectedToggle() != null) && !nombre.equals("") && !nacionalidad.equals("") && !codigo.equals("") ){
             aplicacion.crearArtista(nombre, nacionalidad,codigo,isGrupo);
+            aplicacion.getArtistas().inorden();
         }else {
             System.out.println("Llene todos los campos");
         }
 
 
     }
+
+
+
 
 
 
