@@ -109,10 +109,12 @@ public class Reproductor implements Serializable {
         ListaDoble<Cancion> cancionesArtista = artista.getCancionesArtista();
 
         if (!cancionesArtista.existe(codigo)){
+            System.out.println("Cancion agregada a la lista");
             cancionesArtista.agregarfinal(cancion);
             return true;
 
         }else {
+            System.out.println("Cancion ya existente");
             return false;
         }
 

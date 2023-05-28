@@ -165,6 +165,25 @@ public class HelloApplication extends Application {
         }
     }
 
+    public String crearCodigo(){
+        String codigo="";
+        for(int i=0;i<6;i++){
+            double j = Math.random();
+            codigo= codigo + j;
+        }
+        return codigo;
+    }
+
+    public void crearCancion(String nombre,String album, String duracion, String anio, String url, Genero genero, Artista artista) throws IOException {
+        String codigo = crearCodigo();
+        boolean verify = reproductor.crearCancion(artista,codigo,nombre,album,anio,genero,url);
+        if(verify){
+            Persistencia.serializar(reproductor);
+            showAdminView();
+        }
+
+    }
+
     public ArbolBinario<Artista> getArtistas(){
         return reproductor.getArbolArtista();
     }

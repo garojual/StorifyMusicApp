@@ -17,6 +17,7 @@ public class Artista implements Comparable<Artista>,Serializable {
         this.codigo = codigo;
         this.nacionalidad = nacionalidad;
         this.isGrupo = isGrupo;
+        this.cancionesArtista = new ListaDoble<>();
     }
 
     public Artista() {

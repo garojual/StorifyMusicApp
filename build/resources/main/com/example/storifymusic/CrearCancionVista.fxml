@@ -15,17 +15,24 @@
    <TextField layoutX="50.0" layoutY="163.0" text="Álbum" />
    <TextField layoutX="50.0" layoutY="230.0" text="Año" />
    <TextField layoutX="50.0" layoutY="196.0" text="Duración" />
-   <CheckBox layoutX="391.0" layoutY="140.0" mnemonicParsing="false" text="Pop" />
+   <Button fx:id="buttonAgregar" layoutX="200.0" layoutY="329.0" mnemonicParsing="false" onAction="#crearCancion" prefHeight="26.0" prefWidth="78.0" text="Agregar" />
+   <TextField fx:id="txtNombre" layoutX="50.0" layoutY="123.0" promptText="Nombre" />
+   <TextField fx:id="txtAlbum" layoutX="50.0" layoutY="163.0" promptText="Álbum" />
+   <TextField fx:id="txtAnio" layoutX="50.0" layoutY="230.0" promptText="Año" />
+   <TextField fx:id="txtDuracion" layoutX="50.0" layoutY="196.0" promptText="Duración" />
    <Label layoutX="455.0" layoutY="113.0" text="Género">
       <font>
          <Font size="13.0" />
       </font>
    </Label>
-   <CheckBox layoutX="391.0" layoutY="167.0" mnemonicParsing="false" text="Punk" />
-   <CheckBox layoutX="391.0" layoutY="199.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Reggaeton " />
-   <CheckBox layoutX="389.0" layoutY="234.0" mnemonicParsing="false" text="Rock" />
-   <CheckBox layoutX="391.0" layoutY="264.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Electronica" />
    <TextField layoutX="50.0" layoutY="273.0" text="URL" />
    <Button layoutX="322.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
+   <TextField fx:id="txtURL" layoutX="50.0" layoutY="273.0" promptText="URL" />
+   <Button fx:id="ButtonAtras" layoutX="322.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
    <Separator layoutX="297.0" layoutY="73.0" orientation="VERTICAL" prefHeight="321.0" prefWidth="1.0" />
+   <RadioButton fx:id="gRock" layoutX="383.0" layoutY="140.0" mnemonicParsing="false" text="Rock" />
+   <RadioButton fx:id="gPop" layoutX="383.0" layoutY="167.0" mnemonicParsing="false" text="Pop" />
+   <RadioButton fx:id="gReggaeton" layoutX="383.0" layoutY="192.0" mnemonicParsing="false" text="Reggaeton" />
+   <RadioButton fx:id="gPunk" layoutX="383.0" layoutY="222.0" mnemonicParsing="false" text="Punk" />
+   <RadioButton fx:id="gElectronica" layoutX="383.0" layoutY="247.0" mnemonicParsing="false" text="Electronica" />
 </AnchorPane>
