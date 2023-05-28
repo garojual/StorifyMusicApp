@@ -58,8 +58,8 @@ public class HelloApplication extends Application {
         loader.setLocation(HelloApplication.class.getResource("/com/example/storifymusic/UsuarioVista.fxml"));
         AnchorPane rootLayout = (AnchorPane) loader.load();
         UsuarioVistaController usuarioVistaController = loader.getController();
-        usuarioVistaController.setUserName(reproductor.getTablaUsuarios().get(userName));
         usuarioVistaController.setAplicacion(this);
+        usuarioVistaController.setUserName(reproductor.getTablaUsuarios().get(userName));
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -187,4 +187,6 @@ public class HelloApplication extends Application {
     public ArbolBinario<Artista> getArtistas(){
         return reproductor.getArbolArtista();
     }
+
+
 }

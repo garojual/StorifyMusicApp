@@ -5,12 +5,12 @@
 
 <AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
    <children>
-      <TableView fx:id="tblCancionesUsuario" layoutX="21.0" layoutY="74.0" prefHeight="183.0" prefWidth="383.0">
+      <TableView fx:id="tblCancionesUsuario" layoutX="21.0" layoutY="74.0" onMouseClicked="#getCancionOnClick" prefHeight="183.0" prefWidth="383.0">
         <columns>
-          <TableColumn fx:id="colFavorito" prefWidth="101.19997787475586" text="Titulo" />
-            <TableColumn fx:id="colTitulo" prefWidth="99.39996337890625" text="Artista" />
-            <TableColumn fx:id="colArtista" minWidth="0.0" prefWidth="91.00001525878906" text="Álbum" />
-            <TableColumn fx:id="colAlbum" prefWidth="89.0" text="Género" />
+          <TableColumn fx:id="colTitulo" prefWidth="101.19997787475586" text="Titulo" />
+            <TableColumn fx:id="colArtista" prefWidth="99.39996337890625" text="Artista" />
+            <TableColumn fx:id="colAlbum" minWidth="0.0" prefWidth="91.00001525878906" text="Álbum" />
+            <TableColumn fx:id="colGenero" prefWidth="89.0" text="Género" />
         </columns>
       </TableView>
       <Button layoutX="449.0" layoutY="342.0" mnemonicParsing="false" onAction="#reproducir" prefHeight="26.0" prefWidth="116.0" text="Reproducir " />

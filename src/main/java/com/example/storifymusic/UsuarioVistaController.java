@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class UsuarioVistaController {
     private Usuario userName;
     private Cancion cancionSeleccionada;
     private ObservableList<Cancion> listaCancionesUsuario;
+
 
     @FXML
     private TableView<Cancion> tblCancionesUsuario;
@@ -49,6 +51,9 @@ public class UsuarioVistaController {
     private TableColumn<String,Cancion> colDuracion;
 
     @FXML
+    private TableColumn<String,Cancion> colGenero;
+
+    @FXML
     private AnchorPane AnchorPaneUsuario;
 
 
@@ -59,39 +64,43 @@ public class UsuarioVistaController {
 
     public void setAplicacion(HelloApplication aplicacion) {
         this.aplicacion = aplicacion;
+        actualizarTabla();
     }
 
     @FXML
     public void initialize(){
 
-        /*
-        listaCancionesUsuario = FXCollections.observableArrayList(new Cancion("01","mor"));
-        colTitulo.setCellValueFactory(new PropertyValueFactory<>("nombreCancion"));
-        tblCancionesUsuario.setItems(listaCancionesUsuario);
+    }
 
-         */
-        Artista artista1 = new Artista("Feid","01","Colombiano",false);
-        Cancion cancion = new Cancion("01","Ferxxo 100", artista1);
-        ListaDoble<Cancion> listaDoble= new ListaDoble<>();
-        listaDoble.agregarInicio(cancion);
-        artista1.setCancionesArtista(listaDoble);
-
-        ArbolBinario <Artista> artistas= new ArbolBinario<>();
-        artistas.insertar(artista1);
+    public void actualizarTabla(){
+        ObservableList<Artista> listaArtistas = FXCollections.observableArrayList();
+        inOrderTraversal(aplicacion.getArtistas(), listaArtistas::addAll);
 
         listaCancionesUsuario = FXCollections.observableArrayList();
-        //ArbolBinario<Artista> artistas= aplicacion.getArtistas();
-        inOrderTraversal(artistas,artista -> listaCancionesUsuario.addAll(artista.getCancionesArtista().getAll()));
+
+        for (Artista artista: listaArtistas
+        ) {
+            for (Cancion cancion: artista.getCancionesArtista()) {
+                listaCancionesUsuario.add(cancion);
+            }
+        }
 
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("nombreCancion"));
         colArtista.setCellValueFactory(new PropertyValueFactory<>("artista"));
+        colAlbum.setCellValueFactory(new PropertyValueFactory<>("nombreAlbum"));
+        colGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
         tblCancionesUsuario.setItems(listaCancionesUsuario);
     }
 
 
+
+
     @FXML
     public void reproducir(ActionEvent actionEvent){
-        YoutubePlayer youtubePlayer = new YoutubePlayer();
+        String url = cancionSeleccionada.getURL();
+        String ulrCurada = url.substring(32, url.length());
+        System.out.println(ulrCurada);
+        YoutubePlayer youtubePlayer = new YoutubePlayer(ulrCurada);
         Stage stage = new Stage();
         youtubePlayer.start(stage);
     }
@@ -109,7 +118,8 @@ public class UsuarioVistaController {
     }
 
 
+    public void getCancionOnClick(MouseEvent mouseEvent) {
+        cancionSeleccionada = tblCancionesUsuario.getSelectionModel().getSelectedItem();
 
-
-
+    }
 }
