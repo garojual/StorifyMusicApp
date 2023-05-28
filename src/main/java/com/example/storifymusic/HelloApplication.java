@@ -168,7 +168,7 @@ public class HelloApplication extends Application {
     public String crearCodigo(){
         String codigo="";
         for(int i=0;i<6;i++){
-            double j = Math.random();
+            double j = Math.random()*(6);
             codigo= codigo + j;
         }
         return codigo;
