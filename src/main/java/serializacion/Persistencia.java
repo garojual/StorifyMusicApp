@@ -6,7 +6,7 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 
-public class Persistencia {
+public class    Persistencia {
 
     public static final String URL_PERSIT = "src/main/java/serializacion/datos.xml";
 
