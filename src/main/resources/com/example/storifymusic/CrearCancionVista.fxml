@@ -10,19 +10,22 @@
          <Font size="22.0" />
       </font>
    </Label>
-   <Button layoutX="251.0" layoutY="332.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Agregar" />
+   <Button layoutX="200.0" layoutY="329.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Agregar" />
    <TextField layoutX="50.0" layoutY="123.0" text="Nombre" />
-   <TextField layoutX="50.0" layoutY="176.0" text="Álbum" />
-   <TextField layoutX="50.0" layoutY="274.0" text="Año" />
-   <TextField layoutX="50.0" layoutY="230.0" text="Duración" />
-   <CheckBox layoutX="398.0" layoutY="140.0" mnemonicParsing="false" text="Pop" />
+   <TextField layoutX="50.0" layoutY="163.0" text="Álbum" />
+   <TextField layoutX="50.0" layoutY="230.0" text="Año" />
+   <TextField layoutX="50.0" layoutY="196.0" text="Duración" />
+   <CheckBox layoutX="391.0" layoutY="140.0" mnemonicParsing="false" text="Pop" />
    <Label layoutX="455.0" layoutY="113.0" text="Género">
       <font>
          <Font size="13.0" />
       </font>
    </Label>
-   <CheckBox layoutX="396.0" layoutY="167.0" mnemonicParsing="false" text="Punk" />
-   <CheckBox layoutX="398.0" layoutY="200.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Reggaeton " />
-   <CheckBox layoutX="396.0" layoutY="234.0" mnemonicParsing="false" text="Rock" />
-   <CheckBox layoutX="391.0" layoutY="277.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Electronica" />
+   <CheckBox layoutX="391.0" layoutY="167.0" mnemonicParsing="false" text="Punk" />
+   <CheckBox layoutX="391.0" layoutY="199.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Reggaeton " />
+   <CheckBox layoutX="389.0" layoutY="234.0" mnemonicParsing="false" text="Rock" />
+   <CheckBox layoutX="391.0" layoutY="264.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Electronica" />
+   <TextField layoutX="50.0" layoutY="273.0" text="URL" />
+   <Button layoutX="322.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
+   <Separator layoutX="297.0" layoutY="73.0" orientation="VERTICAL" prefHeight="321.0" prefWidth="1.0" />
 </AnchorPane>
