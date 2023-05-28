@@ -92,6 +92,22 @@ public class HelloApplication extends Application {
         }
     }
 
+    private void showCrearCancionView(Artista artista){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource("/com/example/storifymusic/CrearCancionVista.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            CrearCancionVistaController crearCancionVistaController = loader.getController();
+            crearCancionVistaController.setArtista(artista);
+            crearCancionVistaController.setAplicacion(this);
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void showArtista(){
         showCrearArtistaView();
 
@@ -102,7 +118,9 @@ public class HelloApplication extends Application {
     }
 
 
-
+    public void showCrearCancion(Artista artista){
+        showCrearCancionView(artista);
+    }
 
 
     public void ingresarAdmin(String userName, String contrasenia) throws IOException {

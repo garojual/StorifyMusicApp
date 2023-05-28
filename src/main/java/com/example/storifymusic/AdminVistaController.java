@@ -7,17 +7,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.ArbolBinario;
 import model.Artista;
 import model.NodoArbol;
 
 import java.io.IOException;
+import java.nio.MappedByteBuffer;
 import java.util.function.Consumer;
 
 public class AdminVistaController {
     @FXML
     public TableColumn<Artista, String> columnaNombre;
     public TableColumn<Artista, String> columnaCodigo;
+    private Artista artistaSeleccionado;
     @FXML
     private TableView tablaArtistas;
     HelloApplication aplicacion;
@@ -53,6 +56,13 @@ public class AdminVistaController {
     }
 
     public void agregarCancion(ActionEvent event) {
+        if(artistaSeleccionado == null){
+            System.out.println("Seleccionar un artista");
+        }
+        else{
+            System.out.println("correcto");
+            aplicacion.showCrearCancion(artistaSeleccionado);
+        }
     }
 
     public void inOrderTraversal(ArbolBinario<Artista> arbol, Consumer<Artista> action) {
@@ -65,5 +75,9 @@ public class AdminVistaController {
             action.accept(node.getElemento());
             inOrderTraversal(node.getDerecho(), action);
         }
+    }
+
+    public void getDatoTabla(MouseEvent mouseEvent) {
+        artistaSeleccionado = (Artista) tablaArtistas.getSelectionModel().getSelectedItem();
     }
 }

@@ -21,7 +21,9 @@ public class CrearUsuarioVistaController {
     private TextField txtEmailCrear;
 
     public void setAplicacion(HelloApplication aplicacion) {
+
         this.aplicacion = aplicacion;
+
     }
 
 

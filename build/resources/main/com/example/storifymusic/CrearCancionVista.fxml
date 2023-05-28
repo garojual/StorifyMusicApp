@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.storifymusic.CrearCancionVistaController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.CrearCancionVistaController">
+   <Label layoutX="232.0" layoutY="30.0" text="Agregar canción">
+      <font>
+         <Font size="22.0" />
+      </font>
+   </Label>
+   <Button layoutX="200.0" layoutY="329.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Agregar" />
+   <TextField layoutX="50.0" layoutY="123.0" text="Nombre" />
+   <TextField layoutX="50.0" layoutY="163.0" text="Álbum" />
+   <TextField layoutX="50.0" layoutY="230.0" text="Año" />
+   <TextField layoutX="50.0" layoutY="196.0" text="Duración" />
+   <CheckBox layoutX="391.0" layoutY="140.0" mnemonicParsing="false" text="Pop" />
+   <Label layoutX="455.0" layoutY="113.0" text="Género">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Label>
+   <CheckBox layoutX="391.0" layoutY="167.0" mnemonicParsing="false" text="Punk" />
+   <CheckBox layoutX="391.0" layoutY="199.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Reggaeton " />
+   <CheckBox layoutX="389.0" layoutY="234.0" mnemonicParsing="false" text="Rock" />
+   <CheckBox layoutX="391.0" layoutY="264.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Electronica" />
+   <TextField layoutX="50.0" layoutY="273.0" text="URL" />
+   <Button layoutX="322.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
+   <Separator layoutX="297.0" layoutY="73.0" orientation="VERTICAL" prefHeight="321.0" prefWidth="1.0" />
 </AnchorPane>
