@@ -43,15 +43,32 @@ public class ListaDobleCircular<T> implements Serializable {
      * @return posición donde se encontró el nodo
      */
     public int buscar( T valor ) {
-        int cont = 0;
-        int pos = -1;
-
-        for( NodoLista<T> aux = nodoPrimero; cont < tamanio; cont++, aux = aux.getSiguiente() ) {
-            if( aux.getDato().equals( valor ) ) {
-                pos = cont;
-            }
+        if (estaVacia()) {
+            // La lista está vacía
+            return -1;
         }
-        return pos;
+
+        NodoLista<T> actual = nodoPrimero;
+        int posicion = 0;
+        boolean encontrado = false;
+
+        do {
+            if (actual.getDato().equals(valor)) {
+                // Elemento encontrado, retorna su posición
+                encontrado = true;
+                break;
+            }
+
+            actual = actual.getSiguiente();
+            posicion++;
+        } while (actual != nodoPrimero);
+
+        if (encontrado) {
+            return posicion;
+        } else {
+            // Elemento no encontrado
+            return -1;
+        }
     }
 
     public void agregarFinal(T valorNodo) {
@@ -59,6 +76,8 @@ public class ListaDobleCircular<T> implements Serializable {
         NodoLista<T> nuevoNodo = new NodoLista<>( valorNodo );
 
         if( estaVacia() ) {
+            nuevoNodo.setSiguiente(nuevoNodo);
+            nuevoNodo.setAnterior(nuevoNodo);
             nodoPrimero = nodoUltimo = nuevoNodo;
         }
         else {
@@ -79,29 +98,40 @@ public class ListaDobleCircular<T> implements Serializable {
     public void eliminar(T valor) {
         NodoLista<T> actual = nodoPrimero;
 
-        // Buscar el nodo con el valor dado
-        while (actual != null && !actual.getDato().equals(valor)) {
+        while (actual.getDato() != valor) {
             actual = actual.getSiguiente();
+
+            // Si se ha recorrido toda la lista y no se encontró el elemento
+            if (actual == nodoPrimero) {
+                System.out.println("El elemento no se encontró en la lista");
+                return;
+            }
         }
 
-        if (actual != null) {
-            NodoLista<T> anterior = actual.getAnterior();
-            NodoLista<T> siguiente = actual.getSiguiente();
-
-            if (anterior != null) {
-                anterior.setSiguiente(siguiente);
-            } else {
-                nodoPrimero = siguiente;
-            }
-
-            if (siguiente != null) {
-                siguiente.setAnterior(anterior);
-            } else {
-                nodoUltimo = anterior;
-            }
-
-            tamanio--;
+        // Si solo hay un elemento en la lista
+        if (nodoPrimero == nodoUltimo) {
+            nodoPrimero = null;
+            nodoUltimo = null;
         }
+        // Si el elemento a borrar es el primero de la lista
+        else if (actual == nodoPrimero) {
+            nodoPrimero = nodoPrimero.getSiguiente();
+            nodoPrimero.setAnterior(nodoUltimo);
+            nodoUltimo.setSiguiente(nodoPrimero);
+        }
+        // Si el elemento a borrar es el último de la lista
+        else if (actual == nodoUltimo) {
+            nodoUltimo = nodoUltimo.getAnterior();
+            nodoUltimo.setSiguiente(nodoPrimero);
+            nodoPrimero.setAnterior(nodoUltimo);
+        }
+        // Si el elemento a borrar está en medio de la lista
+        else {
+            actual.getAnterior().setSiguiente(actual.getSiguiente());
+            actual.getSiguiente().setAnterior(actual.getAnterior());
+        }
+
+        tamanio--;
     }
 
 
@@ -121,6 +151,30 @@ public class ListaDobleCircular<T> implements Serializable {
         }
 
         System.out.println();
+    }
+
+    public NodoLista<T> getNodoPrimero() {
+        return nodoPrimero;
+    }
+
+    public void setNodoPrimero(NodoLista<T> nodoPrimero) {
+        this.nodoPrimero = nodoPrimero;
+    }
+
+    public NodoLista<T> getNodoUltimo() {
+        return nodoUltimo;
+    }
+
+    public void setNodoUltimo(NodoLista<T> nodoUltimo) {
+        this.nodoUltimo = nodoUltimo;
+    }
+
+    public int getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(int tamanio) {
+        this.tamanio = tamanio;
     }
 
 }

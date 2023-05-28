@@ -5,18 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.ArbolBinario;
-import model.Artista;
-import model.Genero;
-import model.Reproductor;
+import model.*;
 import serializacion.Persistencia;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class HelloApplication extends Application {
 
     private Reproductor reproductor = Reproductor.getInstance();
     private Stage primaryStage;
+    private Carataker caretaker = new Carataker();
 
     public static void main(String[] args) {
         launch();
@@ -58,8 +57,8 @@ public class HelloApplication extends Application {
         loader.setLocation(HelloApplication.class.getResource("/com/example/storifymusic/UsuarioVista.fxml"));
         AnchorPane rootLayout = (AnchorPane) loader.load();
         UsuarioVistaController usuarioVistaController = loader.getController();
-        usuarioVistaController.setAplicacion(this);
         usuarioVistaController.setUserName(reproductor.getTablaUsuarios().get(userName));
+        usuarioVistaController.setAplicacion(this);
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -142,6 +141,35 @@ public class HelloApplication extends Application {
         }
     }
 
+    public void eliminarCancionUser(Usuario usuario, Cancion cancionSeleccionadaMias) throws IOException, ClassNotFoundException {
+        caretaker.guardarEstado(reproductor);
+        System.out.println("Almacenado estado reproductor");
+        reproductor.eliminarCancionListaUser(usuario, cancionSeleccionadaMias);
+        Persistencia.serializar(reproductor);
+    }
+
+    public void deshacer() throws IOException, ClassNotFoundException {
+        caretaker.deshacer(reproductor);
+        Persistencia.serializar(reproductor);
+    }
+
+    public void rehacer() throws IOException, ClassNotFoundException {
+        caretaker.rehacer(reproductor);
+        Persistencia.serializar(reproductor);
+    }
+
+    public Usuario reemplazarUsuario(Usuario usuario){
+        return reemplazarUsuario(getTablaUsuarios(),usuario);
+    }
+
+    private Usuario reemplazarUsuario(HashMap<String,Usuario> tablaUsuarios,Usuario usuario){
+        return tablaUsuarios.get(usuario.getUserName());
+    }
+
+    public void buscar(String nombre){
+
+    }
+
     public void crearUsuario(String nombre, String clave, String correo) throws IOException {
         boolean verify = reproductor.crearUser(nombre, clave, correo);
         if (verify) {
@@ -151,6 +179,13 @@ public class HelloApplication extends Application {
             System.out.println("El usuario ya existe");
             //mostrarMensajeError("El usuario no puede ser creado");
         }
+
+    }
+
+    public void agregarCancionListaUser(Usuario usuario, Cancion cancionSeleccionada) throws IOException, ClassNotFoundException {
+        caretaker.guardarEstado(reproductor);
+        reproductor.agregarCancionListaUser(usuario,cancionSeleccionada);
+        Persistencia.serializar(reproductor);
 
     }
 
@@ -186,6 +221,10 @@ public class HelloApplication extends Application {
 
     public ArbolBinario<Artista> getArtistas(){
         return reproductor.getArbolArtista();
+    }
+
+    public HashMap<String, Usuario> getTablaUsuarios() {
+        return reproductor.getTablaUsuarios();
     }
 
 

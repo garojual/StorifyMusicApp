@@ -11,7 +11,7 @@ public class Usuario implements Serializable {
     private String userName;
     private String contrasenia;
     private String email;
-    private ListaDobleCircular<Cancion> listaCanciones;
+    private ListaDobleCircular<Cancion> listaCanciones = new ListaDobleCircular<>();
 
     private static final long serialVersionUID = 1L;
 
@@ -24,10 +24,8 @@ public class Usuario implements Serializable {
     public void agregarCancionLista(Cancion cancion){
         int posicion = listaCanciones.buscar(cancion);
         if (posicion !=-1){
-            mostrarMensajeError("Está cancion ya se encuentra en la lista");
         }else {
             listaCanciones.agregarFinal(cancion);
-            mostrarMensajeError("Se agregó la cancion");
 
         }
 
@@ -68,7 +66,7 @@ public class Usuario implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public void setUserName(String userName) {

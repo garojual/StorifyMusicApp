@@ -83,6 +83,11 @@ public class Reproductor implements Serializable {
         }
     }
 
+    public void agregarCancionListaUser(Usuario usuario, Cancion cancionSeleccionadaTodas) {
+        usuario.agregarCancionLista(cancionSeleccionadaTodas);
+    }
+
+
     public boolean ingresarAdmin(String userName, String contrasenia) {
         // TODO Auto-generated method stub
         Administrador admin = tablaAdmin.get(userName);
@@ -128,6 +133,10 @@ public class Reproductor implements Serializable {
             return false;
         }
 
+    }
+
+    public void eliminarCancionListaUser(Usuario usuario, Cancion cancionSeleccionadaMias) {
+        usuario.eliminarCancionLista(cancionSeleccionadaMias);
     }
 
 

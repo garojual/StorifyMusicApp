@@ -3,27 +3,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
+<AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
    <children>
-      <TableView fx:id="tblCancionesUsuario" layoutX="21.0" layoutY="74.0" onMouseClicked="#getCancionOnClick" prefHeight="183.0" prefWidth="383.0">
-        <columns>
-          <TableColumn fx:id="colTitulo" prefWidth="101.19997787475586" text="Titulo" />
-            <TableColumn fx:id="colArtista" prefWidth="99.39996337890625" text="Artista" />
-            <TableColumn fx:id="colAlbum" minWidth="0.0" prefWidth="91.00001525878906" text="Álbum" />
-            <TableColumn fx:id="colGenero" prefWidth="89.0" text="Género" />
-        </columns>
-      </TableView>
+       <TableView fx:id="tblCanciones" layoutX="21.0" layoutY="74.0" onMouseClicked="#getCancionOnClick" prefHeight="183.0" prefWidth="383.0">
+           <columns>
+               <TableColumn fx:id="colTitulo" prefWidth="101.19997787475586" text="Titulo" />
+               <TableColumn fx:id="colArtista" prefWidth="99.39996337890625" text="Artista" />
+               <TableColumn fx:id="colAlbum" minWidth="0.0" prefWidth="91.00001525878906" text="Álbum" />
+               <TableColumn fx:id="colGenero" prefWidth="89.0" text="Género" />
+           </columns>
+       </TableView>
       <Button layoutX="449.0" layoutY="342.0" mnemonicParsing="false" onAction="#reproducir" prefHeight="26.0" prefWidth="116.0" text="Reproducir " />
-      <TextField layoutX="27.0" layoutY="298.0" prefHeight="10.0" prefWidth="102.0" text="Buscar" />
-      <Button layoutX="168.0" layoutY="282.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="102.0" text="Agregar" />
-      <Button layoutX="168.0" layoutY="318.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
+      <TextField fx:id="buscar" layoutX="37.0" layoutY="282.0" prefHeight="10.0" prefWidth="102.0" />
+      <Button layoutX="168.0" layoutY="282.0" mnemonicParsing="false" onAction="#actualizarFavoritos" prefHeight="13.0" prefWidth="102.0" text="Agregar" />
+      <Button layoutX="168.0" layoutY="318.0" mnemonicParsing="false" onAction="#eliminarCancionUsuario" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
       <Label layoutX="250.0" prefHeight="50.0" prefWidth="164.0" text="Storify Music" />
-      <TableView layoutX="432.0" layoutY="72.0" prefHeight="259.0" prefWidth="148.0">
+      <TableView fx:id="tblCancionesUsuario" layoutX="432.0" layoutY="72.0" onMouseClicked="#getCancionUsuarioOnClick" prefHeight="259.0" prefWidth="148.0">
         <columns>
-          <TableColumn prefWidth="147.60003662109375" text="Playlist" />
+          <TableColumn fx:id="favoritos" prefWidth="147.60003662109375" text="Playlist" />
         </columns>
       </TableView>
-      <Button layoutX="300.0" layoutY="282.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Deshacer" />
-      <Button layoutX="300.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Rehacer" />
+      <Button layoutX="300.0" layoutY="282.0" mnemonicParsing="false" onAction="#deshacer" prefHeight="25.0" prefWidth="82.0" text="Deshacer" />
+      <Button layoutX="300.0" layoutY="319.0" mnemonicParsing="false" onAction="#rehacer" prefHeight="25.0" prefWidth="82.0" text="Rehacer" />
+      <Label fx:id="lblUsuario" layoutX="270.0" layoutY="42.0" text="Usuario" />
+      <Button layoutX="62.0" layoutY="319.0" mnemonicParsing="false" text="Buscar" />
    </children>
 </AnchorPane>
