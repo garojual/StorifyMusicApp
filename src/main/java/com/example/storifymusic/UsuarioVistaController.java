@@ -125,6 +125,12 @@ public class UsuarioVistaController {
         tblCanciones.setItems(listaCanciones);
     }
 
+    /**
+     * Actualiza la tabla segun los criterios de busqueda, a traves de la modificacion de una ObservableList de canciones
+     * que dictan cuales aparecen en la tabla, solamente agregando a la misma las que coincidan con lo buscado
+     * @param criterio el criterio con el cual se quiere realizar la busqueda [Nombre de la cancion, Artista, Genero]
+     * @param busqueda la palabra clave que se va a buscar en los criterios
+     */
     public void actualizarSegunCriterio(String criterio, String busqueda){
         ObservableList<Artista> listaArtistas = FXCollections.observableArrayList();
         inOrderTraversal(aplicacion.getArtistas(), listaArtistas::addAll);
@@ -168,8 +174,15 @@ public class UsuarioVistaController {
 
     }
 
+    /**
+     * Busca el genero mas popular a traves de la iteracion de los generos y su almacenamiento en un hashmap donde
+     * si la clave ya existe, le suma uno a su valor asociado, y si no existe, agrega la clave con un valor
+     * predeterminado de cero. Una vez agregados los datos, se itera sobre el hashmap y se comparan sus valores para
+     * hallar el mayor, sacar su calve y agregarla al label en la interfaz.
+     */
     public void imprimirGeneroMasPopular(){
         HashMap<String, Integer> recuentoGeneros = new HashMap<>();
+
         ArrayList<Cancion> listaCancionesAux = new ArrayList();
         ObservableList<Artista> listaArtistas = FXCollections.observableArrayList();
         inOrderTraversal(aplicacion.getArtistas(), listaArtistas::addAll);
@@ -195,7 +208,7 @@ public class UsuarioVistaController {
                 generoMasRepetido = entry.getKey();
             }
         }
-        System.out.println("El género que más se repite es: " + generoMasRepetido);
+        //System.out.println("El género que más se repite es: " + generoMasRepetido);
 
         lblGeneroPopular.setText("Genero mas popular: " + generoMasRepetido);
     }
@@ -288,7 +301,13 @@ public class UsuarioVistaController {
         actualizarTabla();
     }
 
-    public void buscar(ActionEvent event){
+    /**
+     * Comprueba y llena la informacion digitada en los campos por el usuario, para luego llamar a la funcion
+     * que actualiza la tabla para reflejar la busqueda. Si no se tienen todos los criterios completos, simplemente
+     * actualizara a la tabla base.
+     * @param event evento activo al hacer click el boton de busqueda.
+     */
+    public void comprobarInfoBuscar(ActionEvent event){
         String textoBusqueda = buscar.getText();
         System.out.println(textoBusqueda);
 
