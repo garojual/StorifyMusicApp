@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,12 +13,17 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.function.Consumer;
 
 
 public class UsuarioVistaController {
 
-    HelloApplication aplicacion;
+
+    private HelloApplication aplicacion;
     private Usuario userName;
     private Cancion cancionSeleccionada;
     private Cancion cancionSeleccionadaUsuario;
@@ -63,6 +65,20 @@ public class UsuarioVistaController {
     @FXML
     private TextField buscar;
 
+    @FXML
+    private RadioButton gTitulo;
+
+    @FXML
+    private RadioButton gArtista;
+
+    @FXML
+    private RadioButton gGenero;
+
+    @FXML
+    private Label lblGeneroPopular;
+
+    private ToggleGroup toggleGroup;
+
 
 
 
@@ -77,10 +93,18 @@ public class UsuarioVistaController {
         actualizarTabla();
         actualizarTablaFavoritos();
 
+        toggleGroup = new ToggleGroup();
+        gTitulo.setToggleGroup(toggleGroup);
+        gArtista.setToggleGroup(toggleGroup);
+        gGenero.setToggleGroup(toggleGroup);
+        imprimirGeneroMasPopular();
+
     }
 
     @FXML
     public void initialize() {
+
+
     }
 
     public void actualizarTabla(){
@@ -101,6 +125,81 @@ public class UsuarioVistaController {
         tblCanciones.setItems(listaCanciones);
     }
 
+    public void actualizarSegunCriterio(String criterio, String busqueda){
+        ObservableList<Artista> listaArtistas = FXCollections.observableArrayList();
+        inOrderTraversal(aplicacion.getArtistas(), listaArtistas::addAll);
+        switch(criterio){
+            case "nombre":
+                for (Artista artista: listaArtistas) {
+                    for (Cancion cancion: artista.getCancionesArtista()) {
+                        if(cancion.getNombreCancion().toLowerCase().contains(busqueda.toLowerCase())){
+                            listaCanciones.add(cancion);
+                        }
+                    }
+                }
+                break;
+
+            case "artista":
+                for (Artista artista: listaArtistas) {
+                    for (Cancion cancion: artista.getCancionesArtista()) {
+                        if(cancion.getArtista().getNombre().toLowerCase().contains(busqueda.toLowerCase())){
+                            listaCanciones.add(cancion);
+                        }
+                    }
+                }
+                break;
+
+            case "genero":
+                for (Artista artista: listaArtistas) {
+                    for (Cancion cancion: artista.getCancionesArtista()) {
+                        if(cancion.getGenero().toString().toLowerCase().contains(busqueda.toLowerCase())){
+                            listaCanciones.add(cancion);
+                        }
+                    }
+                }
+                break;
+        }
+
+        colTitulo.setCellValueFactory(new PropertyValueFactory<>("nombreCancion"));
+        colArtista.setCellValueFactory(new PropertyValueFactory<>("artista"));
+        colAlbum.setCellValueFactory(new PropertyValueFactory<>("nombreAlbum"));
+        colGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        tblCanciones.setItems(listaCanciones);
+
+    }
+
+    public void imprimirGeneroMasPopular(){
+        HashMap<String, Integer> recuentoGeneros = new HashMap<>();
+        ArrayList<Cancion> listaCancionesAux = new ArrayList();
+        ObservableList<Artista> listaArtistas = FXCollections.observableArrayList();
+        inOrderTraversal(aplicacion.getArtistas(), listaArtistas::addAll);
+
+        for (Artista artista: listaArtistas
+        ) {
+            for (Cancion cancion: artista.getCancionesArtista()) {
+                listaCancionesAux.add(cancion);
+            }
+        }
+
+        for(Cancion cancion: listaCancionesAux){
+            String genero = cancion.getGenero().toString();
+            recuentoGeneros.put(genero, recuentoGeneros.getOrDefault(genero, 0) + 1);
+        }
+
+        String generoMasRepetido = "";
+        int maxRecuento = 0;
+
+        for (Map.Entry<String, Integer> entry : recuentoGeneros.entrySet()) {
+            if (entry.getValue() > maxRecuento) {
+                maxRecuento = entry.getValue();
+                generoMasRepetido = entry.getKey();
+            }
+        }
+        System.out.println("El género que más se repite es: " + generoMasRepetido);
+
+        lblGeneroPopular.setText("Genero mas popular: " + generoMasRepetido);
+    }
+
     public void actualizarTablaFavoritos(){
         tblCancionesUsuario.getItems().clear();
         ListaDobleCircular<Cancion> cancionesUsuario = userName.getListaCanciones();
@@ -119,7 +218,7 @@ public class UsuarioVistaController {
         tblCancionesUsuario.setItems(listaCancionesUsuario);
     }
 
-    private void actualizarTablaMiLista() {
+    public void actualizarTablaMiLista() {
         tblCanciones.getItems().clear();
         agregarCancionesMias(userName.getListaCanciones());
         tblCanciones.setItems(listaCancionesUsuario);
@@ -190,8 +289,31 @@ public class UsuarioVistaController {
     }
 
     public void buscar(ActionEvent event){
-        String cancion = buscar.getText();
-        //si pulsas buscar y no hay texto, actualiza normalmente
+        String textoBusqueda = buscar.getText();
+        System.out.println(textoBusqueda);
+
+        String criterioBusqueda = "";
+
+        if(gTitulo.isSelected()){
+            criterioBusqueda = "nombre";
+        }
+        else if(gArtista.isSelected()){
+            criterioBusqueda = "artista";
+        }
+        else if(gGenero.isSelected()){
+            criterioBusqueda = "genero";
+        }
+
+        System.out.println(criterioBusqueda);
+
+        if(criterioBusqueda != "" && textoBusqueda != ""){
+            tblCanciones.getItems().clear();
+            actualizarSegunCriterio(criterioBusqueda, textoBusqueda);
+        }
+        else{
+            tblCanciones.getItems().clear();
+            actualizarTabla();
+        }
 
     }
 

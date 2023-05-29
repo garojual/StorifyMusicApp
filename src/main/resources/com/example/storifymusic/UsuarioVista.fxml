@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
+<AnchorPane fx:id="AnchorPaneUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.storifymusic.UsuarioVistaController">
    <children>
        <TableView fx:id="tblCanciones" layoutX="21.0" layoutY="74.0" onMouseClicked="#getCancionOnClick" prefHeight="183.0" prefWidth="383.0">
            <columns>
@@ -26,6 +26,10 @@
       <Button layoutX="300.0" layoutY="282.0" mnemonicParsing="false" onAction="#deshacer" prefHeight="25.0" prefWidth="82.0" text="Deshacer" />
       <Button layoutX="300.0" layoutY="319.0" mnemonicParsing="false" onAction="#rehacer" prefHeight="25.0" prefWidth="82.0" text="Rehacer" />
       <Label fx:id="lblUsuario" layoutX="270.0" layoutY="42.0" text="Usuario" />
-      <Button layoutX="62.0" layoutY="319.0" mnemonicParsing="false" text="Buscar" />
+      <Button layoutX="62.0" layoutY="319.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+      <RadioButton fx:id="gTitulo" layoutX="19.0" layoutY="360.0" mnemonicParsing="false" text="Titulo" />
+      <RadioButton fx:id="gArtista" layoutX="125.0" layoutY="360.0" mnemonicParsing="false" text="Artista" />
+      <RadioButton fx:id="gGenero" layoutX="227.0" layoutY="360.0" mnemonicParsing="false" text="Genero" />
+      <Label fx:id="lblGeneroPopular" layoutX="414.0" layoutY="51.0" text="Genero mas popular:" />
    </children>
 </AnchorPane>
