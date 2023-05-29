@@ -77,8 +77,6 @@ public class UsuarioVistaController {
         actualizarTabla();
         actualizarTablaFavoritos();
 
-
-
     }
 
     @FXML
@@ -146,7 +144,7 @@ public class UsuarioVistaController {
     @FXML
     public void reproducir(ActionEvent actionEvent){
         String url = cancionSeleccionada.getURL();
-        String ulrCurada = url.substring(32, url.length());
+        String ulrCurada = url.substring(32);
         System.out.println(ulrCurada);
         YoutubePlayer youtubePlayer = new YoutubePlayer(ulrCurada);
         Stage stage = new Stage();
@@ -159,6 +157,7 @@ public class UsuarioVistaController {
     }
 
     public void getCancionUsuarioOnClick(MouseEvent mouseEvent) {
+        cancionSeleccionada = tblCancionesUsuario.getSelectionModel().getSelectedItem();
         cancionSeleccionadaUsuario = tblCancionesUsuario.getSelectionModel().getSelectedItem();
 
     }
@@ -169,6 +168,7 @@ public class UsuarioVistaController {
             aplicacion.eliminarCancionUser(userName, cancionSeleccionadaUsuario);
             cancionSeleccionadaUsuario=null;
             actualizarTablaMiLista();
+            actualizarTabla();
         } else {
             System.out.println("Ninguna cancion ha sido seleccionada");
         }
@@ -178,6 +178,7 @@ public class UsuarioVistaController {
         aplicacion.deshacer();
         userName= aplicacion.reemplazarUsuario(userName);
         actualizarTablaMiLista();
+        actualizarTabla();
     }
 
     @FXML
@@ -185,10 +186,12 @@ public class UsuarioVistaController {
         aplicacion.rehacer();
         userName= aplicacion.reemplazarUsuario(userName);
         actualizarTablaMiLista();
+        actualizarTabla();
     }
 
     public void buscar(ActionEvent event){
         String cancion = buscar.getText();
+        //si pulsas buscar y no hay texto, actualiza normalmente
 
     }
 
