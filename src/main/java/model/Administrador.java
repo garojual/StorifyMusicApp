@@ -2,7 +2,13 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ *Representar al administrador con su usuario y contrasenia
+ * @author Juliana
+ * @author Juan
+ */
 public class Administrador implements Serializable {
+
 
     private String userName;
     private String contrasenia;

@@ -2,6 +2,12 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Estructura propia de nodo arbol generico
+ * @author Juliana
+ * @author Juan
+ * @param <T>
+ */
 public class NodoArbol<T extends Comparable<T>> implements Serializable {
 
     private NodoArbol<T> izquierdo, derecho;
@@ -16,6 +22,7 @@ public class NodoArbol<T extends Comparable<T>> implements Serializable {
     public NodoArbol(T elemento) {
         this.elemento = elemento;
     }
+
 
 
     public boolean agregar(T nuevo) {

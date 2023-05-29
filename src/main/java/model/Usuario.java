@@ -6,6 +6,11 @@ import javafx.scene.control.ButtonType;
 import java.io.Serializable;
 import java.util.Optional;
 
+/**
+ * Representa al usuario con sus respectivos atributos y la lista de canciones asociadas
+ * @author Juliana
+ * @author Juan
+ */
 public class Usuario implements Serializable {
 
     private String userName;
@@ -21,6 +26,10 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
+    /**
+     * Agrega una cancion a la lista de canciones
+     * @param cancion
+     */
     public void agregarCancionLista(Cancion cancion){
         int posicion = listaCanciones.buscar(cancion);
         if (posicion !=-1){
@@ -31,12 +40,21 @@ public class Usuario implements Serializable {
 
     }
 
+    /**
+     * Elimina una cancion de la lista
+     * @param cancion
+     */
     public void eliminarCancionLista(Cancion cancion){
         listaCanciones.eliminar(cancion);
         mostrarMensajeInformacion("La cancion fue eliminada");
 
     }
 
+    /**
+     * Muestra mensaje de alerta
+     * @param mensaje
+     * @return
+     */
     private boolean mostrarMensajeInformacion(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -51,19 +69,6 @@ public class Usuario implements Serializable {
         }
     }
 
-    private boolean mostrarMensajeError(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setTitle("Confirmacion");
-        alert.setContentText(mensaje);
-        Optional<ButtonType> action = alert.showAndWait();
-
-        if (action.get() == ButtonType.OK) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public String getUserName() {
         return this.userName;

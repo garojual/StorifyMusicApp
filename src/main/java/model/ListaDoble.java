@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Estructura propia de una lista doble generica
+ * @author Juliana
+ * @author Juan
+ * @param <T>
+ */
 public class ListaDoble <T> implements Iterable<T>, Serializable {
 
     private NodoLista<T> nodoPrimero;
@@ -16,7 +22,10 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
         tamanio = 0;
     }
 
-    //Agregar al inicio de la lista
+    /**
+     * Agregar al inicio de la lista
+     * @param valorNodo
+     */
     public void agregarInicio(T valorNodo) {
 
         NodoLista<T> nuevoNodo = new NodoLista<>(valorNodo);
@@ -33,7 +42,10 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
         tamanio++;
     }
 
-    //Agregar al final de la lista
+    /**
+     * Agregar al final de la lista
+     * @param valorNodo
+     */
     public void agregarfinal(T valorNodo) {
 
         NodoLista<T> nodo = new NodoLista<>(valorNodo);
@@ -48,6 +60,10 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
         tamanio++;
     }
 
+    /**
+     * obtener todos los items de la lista
+     * @return
+     */
     public ArrayList<T> getAll() {
         ArrayList<T> allItems = new ArrayList<>();
         NodoLista<T> current = nodoPrimero;
@@ -58,7 +74,11 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
         return allItems;
     }
 
-    //Obtener Nodo el valor de un Nodo
+    /**
+     * Obtener Nodo el valor de un Nodo
+     * @param indice
+     * @return
+     */
     public T obtenerValorNodo(int indice) {
 
         NodoLista<T> nodoTemporal = null;
@@ -81,7 +101,11 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
             return null;
     }
 
-    //Verificar si indice es valido
+    /**
+     * Verificar si indice es valido
+     * @param indice
+     * @return
+     */
     private boolean indiceValido(int indice) {
         if( indice>=0 && indice<tamanio ) {
             return true;
@@ -89,25 +113,20 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
         throw new RuntimeException("indice no valido");
     }
 
-    //Verificar si la lista esta vacia
+    /**
+     * Verificar si la lista esta vacia
+     * @return
+     */
     public boolean estaVacia() {
         return(nodoPrimero == null)?true:false;
     }
 
-    //Imprime en consola la lista enlazada
-    public void imprimirLista() {
 
-        NodoLista<T> aux = nodoPrimero;
-
-        while(aux!=null) {
-            System.out.print( aux.getDato()+"\t" );
-            aux = aux.getSiguiente();
-        }
-
-        System.out.println();
-    }
-
-    //Eliminar dado el valor de un nodo
+    /**
+     * Eliminar dado el valor de un nodo
+     * @param dato
+     * @return
+     */
     public T eliminar(T dato){
         NodoLista<T> nodo = nodoPrimero;
         NodoLista<T> previo = null;
@@ -145,25 +164,20 @@ public class ListaDoble <T> implements Iterable<T>, Serializable {
         throw new RuntimeException("El elemento no existe");
     }
 
-    //Elimina el primer nodo de la lista
-    public T eliminarPrimero() {
-
-        if( !estaVacia() ) {
-            NodoLista<T> n = nodoPrimero;
-            T valor = n.getDato();
-            nodoPrimero = n.getSiguiente();
-
-            tamanio--;
-            return valor;
-        }
-
-        throw new RuntimeException("Lista vac�a");
-    }
-
+    /**
+     * verifica si existe el dato en la lista
+     * @param string
+     * @return
+     */
     public boolean existe(String string) {
         return buscar(string)!=null;
     }
 
+    /**
+     * Busca el dato en la lista
+     * @param string
+     * @return
+     */
     private NodoLista<T> buscar(String string){
 
         NodoLista<T> aux = nodoPrimero;

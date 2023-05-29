@@ -7,6 +7,11 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+/**
+ * Controlador que se encarga de la vista de crear usuario
+ * @author Juliana
+ * @author Juan
+ */
 public class CrearUsuarioVistaController {
 
     HelloApplication aplicacion;
@@ -20,13 +25,21 @@ public class CrearUsuarioVistaController {
     @FXML
     private TextField txtEmailCrear;
 
+    /**
+     * Establece una instancia de la aplicacion
+     * @param aplicacion
+     */
     public void setAplicacion(HelloApplication aplicacion) {
 
         this.aplicacion = aplicacion;
 
     }
 
-
+    /**
+     * Crea un usuario
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void CrearUsuario(ActionEvent actionEvent) throws IOException {
         String nombre = txtNomCrear.getText();
@@ -41,6 +54,11 @@ public class CrearUsuarioVistaController {
 
     }
 
+    /**
+     * Regresa a la pantalla inicial
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void Atras(ActionEvent actionEvent) throws IOException {
         aplicacion.devolverLogin();

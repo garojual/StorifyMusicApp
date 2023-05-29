@@ -3,6 +3,12 @@ package model;
 import java.io.Serializable;
 import java.util.function.Consumer;
 
+/**
+ * Estructura propia de arbol binario generico
+ * @param <T>
+ * @author Juliana
+ * @author Juan
+ */
 public class ArbolBinario <T extends Comparable<T>> implements Serializable {
 
     private NodoArbol<T> raiz;
@@ -10,17 +16,27 @@ public class ArbolBinario <T extends Comparable<T>> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Metodo para verificar si el arbol esta vacio
-     * @return true si el arbol esta vacio
+     * Funcion para comprobar si el arbol esta vacío
+     * @return
      */
     public boolean estaVacio() {
         return raiz==null;
     }
 
+    /**
+     * Inserta un nodo al arbol dado un valor como parametro
+     * @param valor
+     */
     public void insertar(T valor) {
         raiz = insertarNodo(raiz, valor);
     }
 
+    /**
+     * inserta un nodo al arbol pasandole un nodo y un valor como parametro
+     * @param nodo
+     * @param valor
+     * @return
+     */
     private NodoArbol<T> insertarNodo(NodoArbol<T> nodo, T valor) {
         if (nodo == null) {
             return new NodoArbol<>(valor);

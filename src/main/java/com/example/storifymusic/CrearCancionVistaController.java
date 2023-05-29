@@ -10,6 +10,11 @@ import model.Genero;
 
 import java.io.IOException;
 
+/**
+ * Controlador encargado de la vista de crear cancion
+ * @author Juliana
+ * @author Juan
+ */
 public class CrearCancionVistaController {
 
     private HelloApplication aplicacion;
@@ -45,6 +50,9 @@ public class CrearCancionVistaController {
     @FXML
     private RadioButton gElectronica;
 
+    @FXML
+    private Button buttonAtras;
+
 
     @FXML
     public void crearCancion (ActionEvent event) throws IOException {
@@ -75,6 +83,16 @@ public class CrearCancionVistaController {
     public void setAplicacion(HelloApplication aplicacion) {
         this.aplicacion = aplicacion;
         System.out.println(artista.getNombre());
+    }
+
+    /**
+     * Regresa a la pantalla principal
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML
+    public void Atras(ActionEvent actionEvent) throws IOException {
+        aplicacion.devolverAdmin();
     }
 
     public void setArtista(Artista artista){

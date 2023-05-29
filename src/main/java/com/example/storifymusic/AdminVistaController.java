@@ -16,6 +16,11 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.util.function.Consumer;
 
+/**
+ * Controlador que se encarga de la vista del admin
+ * @author Juliana
+ * @author Juan
+ */
 public class AdminVistaController {
     @FXML
     public TableColumn<Artista, String> columnaNombre;
@@ -27,13 +32,18 @@ public class AdminVistaController {
 
     private ObservableList<Artista> listaArtistas;
 
-
-
+    /**
+     * Establece una instancia de la aplicacion
+     * @param aplicacion
+     */
     public void setAplicacion(HelloApplication aplicacion) {
         this.aplicacion = aplicacion;
         actualizarTabla();
     }
 
+    /**
+     * Se encarga de actualizar la tabla de los artistas agregados
+     */
     @FXML
     public void actualizarTabla(){
         listaArtistas = FXCollections.observableArrayList();
@@ -44,17 +54,30 @@ public class AdminVistaController {
         tablaArtistas.setItems(listaArtistas);
     }
 
+    /**
+     * Crea un artista en la interfaz
+     * @param event
+     */
     @FXML
     void crearArtista(ActionEvent event) {
         aplicacion.showArtista();
 
     }
 
+    /**
+     * funcionalidad para volver a la ventana de inicio
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void devolver (ActionEvent event) throws IOException {
         aplicacion.devolverLogin();
     }
 
+    /**
+     * Agrega una nueva cancion al artista
+     * @param event
+     */
     public void agregarCancion(ActionEvent event) {
         if(artistaSeleccionado == null){
             System.out.println("Seleccionar un artista");
@@ -69,6 +92,11 @@ public class AdminVistaController {
         inOrderTraversal(arbol.getRaiz(), action);
     }
 
+    /**
+     * realiza el recorrido in orden
+     * @param node
+     * @param action
+     */
     private void inOrderTraversal(NodoArbol<Artista> node, Consumer<Artista> action) {
         if (node != null) {
             inOrderTraversal(node.getIzquierdo(), action);

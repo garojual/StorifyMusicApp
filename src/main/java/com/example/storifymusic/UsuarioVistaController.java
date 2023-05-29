@@ -19,7 +19,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Consumer;
 
-
+/**
+ * Controlador que se encarga de la vista del usuario
+ * @author Juliana
+ * @author Juan
+ */
 public class UsuarioVistaController {
 
 
@@ -80,13 +84,20 @@ public class UsuarioVistaController {
     private ToggleGroup toggleGroup;
 
 
-
-
+    /**
+     * Asigna el nombre de usuario
+     * @param userName
+     */
     public void setUserName(Usuario userName) {
         this.userName = userName;
         AnchorPaneUsuario.setStyle("-fx-background-color: #f6f0ef");
     }
 
+    /**
+     * Establece una instancia de la aplicacion
+     * Actualiza la vista
+     * @param aplicacion
+     */
     public void setAplicacion(HelloApplication aplicacion) {
         this.aplicacion = aplicacion;
         lblUsuario.setText(userName.getUserName());
@@ -107,6 +118,9 @@ public class UsuarioVistaController {
 
     }
 
+    /**
+     * Actualiza la tabla general de las canciones
+     */
     public void actualizarTabla(){
         ObservableList<Artista> listaArtistas = FXCollections.observableArrayList();
         inOrderTraversal(aplicacion.getArtistas(), listaArtistas::addAll);
@@ -213,6 +227,9 @@ public class UsuarioVistaController {
         lblGeneroPopular.setText("Genero mas popular: " + generoMasRepetido);
     }
 
+    /**
+     * actualiza la tabla de las canciones del usuario
+     */
     public void actualizarTablaFavoritos(){
         tblCancionesUsuario.getItems().clear();
         ListaDobleCircular<Cancion> cancionesUsuario = userName.getListaCanciones();
@@ -220,6 +237,13 @@ public class UsuarioVistaController {
         tblCancionesUsuario.setItems(listaCancionesUsuario);
     }
 
+    /**
+     *Actualiza la lista de canciones del usuario
+     * y luego actualiza la tabla en la interfaz de usuario
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void actualizarFavoritos(ActionEvent event) throws IOException, ClassNotFoundException {
         if (cancionSeleccionada != null) {
@@ -231,6 +255,9 @@ public class UsuarioVistaController {
         tblCancionesUsuario.setItems(listaCancionesUsuario);
     }
 
+    /**
+     *Se encarga de actualizar la tabla canciones del usuario actual
+     */
     public void actualizarTablaMiLista() {
         tblCanciones.getItems().clear();
         agregarCancionesMias(userName.getListaCanciones());
@@ -239,7 +266,10 @@ public class UsuarioVistaController {
     }
 
 
-
+    /**
+     * Agrega canciones a la lista de canciones del usuario
+     * @param listaCanciones
+     */
     public void agregarCancionesMias(ListaDobleCircular<Cancion> listaCanciones){
         listaCancionesUsuario.clear();
         NodoLista<Cancion> currentNode = listaCanciones.getNodoPrimero();
@@ -253,6 +283,11 @@ public class UsuarioVistaController {
         }
     }
 
+    /**
+     * Añade la funcionalidad al boton de reproducir
+     * Abre una ventana nueva con la cancion
+     * @param actionEvent
+     */
     @FXML
     public void reproducir(ActionEvent actionEvent){
         String url = cancionSeleccionada.getURL();
@@ -263,17 +298,31 @@ public class UsuarioVistaController {
         youtubePlayer.start(stage);
     }
 
+    /**
+     * Toma la cancion seleccionada de la tabla de canciones generales
+     * @param mouseEvent
+     */
     public void getCancionOnClick(MouseEvent mouseEvent) {
         cancionSeleccionada = tblCanciones.getSelectionModel().getSelectedItem();
 
     }
 
+    /**
+     * Toma la cancion seleccionada de la tabla de canciones del usuario
+     * @param mouseEvent
+     */
     public void getCancionUsuarioOnClick(MouseEvent mouseEvent) {
         cancionSeleccionada = tblCancionesUsuario.getSelectionModel().getSelectedItem();
         cancionSeleccionadaUsuario = tblCancionesUsuario.getSelectionModel().getSelectedItem();
 
     }
 
+    /**
+     * Elimina una cancion de la lista de canciones del usuario
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void eliminarCancionUsuario(ActionEvent event) throws IOException, ClassNotFoundException {
         if (cancionSeleccionadaUsuario != null) {
@@ -285,6 +334,13 @@ public class UsuarioVistaController {
             System.out.println("Ninguna cancion ha sido seleccionada");
         }
     }
+
+    /**
+     * Actualiza la tabla para que realice la funcion deshacer
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void deshacer(ActionEvent event) throws IOException, ClassNotFoundException {
         aplicacion.deshacer();
@@ -293,6 +349,12 @@ public class UsuarioVistaController {
         actualizarTabla();
     }
 
+    /**
+     * Actualiza la tabla para que realice la funcion rehacer
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void rehacer(ActionEvent event) throws IOException, ClassNotFoundException {
         aplicacion.rehacer();
@@ -341,6 +403,11 @@ public class UsuarioVistaController {
         inOrderTraversal(arbol.getRaiz(), action);
     }
 
+    /**
+     * Recorrido in orden
+     * @param node
+     * @param action
+     */
     private void inOrderTraversal(NodoArbol<Artista> node, Consumer<Artista> action) {
         if (node != null) {
             inOrderTraversal(node.getIzquierdo(), action);

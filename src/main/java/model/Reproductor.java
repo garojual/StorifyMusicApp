@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
-
+/**
+ * Representa el reproductor de musica completo, con sus usuarios, artistas y su respectivo admin
+ */
 public class Reproductor implements Serializable {
 
     private static volatile Reproductor instance;
@@ -22,6 +24,10 @@ public class Reproductor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Sigue el patron de diseño singleton para verificar que solo haya una instancia de la clase
+     * @return
+     */
     public static Reproductor getInstance(){
         if (instance == null) {
             synchronized (Reproductor.class) {
@@ -40,6 +46,9 @@ public class Reproductor implements Serializable {
         quemarDatosAdmin();
     }
 
+    /**
+     * Se asignan los respectivos datos al administrador
+     */
     private void quemarDatosAdmin() {
         // TODO Auto-generated method stub
         Administrador admin1 = new Administrador("admin", "admin");
@@ -48,6 +57,12 @@ public class Reproductor implements Serializable {
 
     }
 
+    /**
+     * se crea el objeto a guardar
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public Memento crearMemento() throws IOException, ClassNotFoundException {
         return new Memento(tablaUsuarios);
     }
@@ -56,6 +71,13 @@ public class Reproductor implements Serializable {
         tablaUsuarios = new HashMap<>(memento.getTablaUsuarios());
     }
 
+    /**
+     * se crea un nuevo usuario
+     * @param nombre
+     * @param clave
+     * @param correo
+     * @return
+     */
     public boolean crearUser(String nombre, String clave, String correo) {
 
         Usuario newUser = new Usuario(nombre,clave,correo);
@@ -71,6 +93,12 @@ public class Reproductor implements Serializable {
 
     }
 
+    /**
+     * Se ingresa con los datos del usuario
+     * @param userName
+     * @param contrasenia
+     * @return
+     */
     public boolean ingresarUser(String userName, String contrasenia) {
 
         Usuario user = tablaUsuarios.get(userName);
@@ -83,11 +111,22 @@ public class Reproductor implements Serializable {
         }
     }
 
+    /**
+     * se agrega una nueva cancion a la lista de las canciones del usuario
+     * @param usuario
+     * @param cancionSeleccionadaTodas
+     */
     public void agregarCancionListaUser(Usuario usuario, Cancion cancionSeleccionadaTodas) {
         usuario.agregarCancionLista(cancionSeleccionadaTodas);
     }
 
 
+    /**
+     * se ingresa con los datos del admin
+     * @param userName
+     * @param contrasenia
+     * @return
+     */
     public boolean ingresarAdmin(String userName, String contrasenia) {
         // TODO Auto-generated method stub
         Administrador admin = tablaAdmin.get(userName);
@@ -98,6 +137,14 @@ public class Reproductor implements Serializable {
         }
     }
 
+    /**
+     * Se crea un nuevo artista
+     * @param nombre
+     * @param nacionalidad
+     * @param codigo
+     * @param duo
+     * @return
+     */
     public boolean crearArtista(String nombre, String nacionalidad, String codigo, boolean duo) {
 
         Artista art = new Artista(nombre,codigo,nacionalidad,duo);
@@ -118,6 +165,17 @@ public class Reproductor implements Serializable {
 
     }
 
+    /**
+     * Se crea una nueva cancion
+     * @param artista
+     * @param codigo
+     * @param nombreCancion
+     * @param nombreAlbum
+     * @param anio
+     * @param genero
+     * @param URl
+     * @return
+     */
     public boolean crearCancion(Artista artista,String codigo,String nombreCancion, String nombreAlbum,String anio, Genero genero, String URl) {
 
         Cancion cancion = new Cancion(codigo,nombreCancion,nombreAlbum,anio,genero,URl,artista);
@@ -135,6 +193,11 @@ public class Reproductor implements Serializable {
 
     }
 
+    /**
+     * Se elimina una cancion de la lista de canciones del usuario
+     * @param usuario
+     * @param cancionSeleccionadaMias
+     */
     public void eliminarCancionListaUser(Usuario usuario, Cancion cancionSeleccionadaMias) {
         usuario.eliminarCancionLista(cancionSeleccionadaMias);
     }
@@ -144,6 +207,12 @@ public class Reproductor implements Serializable {
         return existeNombreArtista(arbol.getRaiz(),nombre);
     }
 
+    /**
+     * Se verifica la existencia del artista
+     * @param raiz
+     * @param nombre
+     * @return
+     */
     private boolean existeNombreArtista(NodoArbol<Artista> raiz, String nombre){
         if (raiz == null) {
             return false;

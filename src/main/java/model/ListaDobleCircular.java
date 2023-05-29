@@ -2,6 +2,12 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Estructura propia de una lista doble circular generica
+ * @author Juliana
+ * @author Juan
+ * @param <T>
+ */
 public class ListaDobleCircular<T> implements Serializable {
 
     private NodoLista<T> nodoPrimero;
@@ -71,6 +77,10 @@ public class ListaDobleCircular<T> implements Serializable {
         }
     }
 
+    /**
+     * Agrega al final de lista
+     * @param valorNodo
+     */
     public void agregarFinal(T valorNodo) {
 
         NodoLista<T> nuevoNodo = new NodoLista<>( valorNodo );
@@ -90,7 +100,10 @@ public class ListaDobleCircular<T> implements Serializable {
         tamanio++;
     }
 
-    //Verificar si la lista esta vacia
+    /**
+     * Verificar si la lista esta vacia
+     * @return
+     */
     public boolean estaVacia() {
         return nodoPrimero == null && nodoUltimo == null;
     }
@@ -136,22 +149,7 @@ public class ListaDobleCircular<T> implements Serializable {
 
 
 
-    /**
-     * Imprime en consola la lista enlazada
-     */
-    public void imprimirLista() {
 
-        NodoLista<T> aux = nodoPrimero;
-        int cont = 0;
-
-        while( aux!=null && cont != tamanio ) {
-            System.out.print( aux.getDato()+"\t" );
-            aux = aux.getSiguiente();
-            cont ++;
-        }
-
-        System.out.println();
-    }
 
     public NodoLista<T> getNodoPrimero() {
         return nodoPrimero;

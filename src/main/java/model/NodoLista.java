@@ -2,6 +2,12 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * estructura propia de nodo lista generico
+ * @author Juliana
+ * @author Juan
+ * @param <T>
+ */
 public class NodoLista <T> implements Serializable {
 
     private NodoLista<T> anterior;

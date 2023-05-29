@@ -28,7 +28,7 @@
    <TextField layoutX="50.0" layoutY="273.0" text="URL" />
    <Button layoutX="322.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
    <TextField fx:id="txtURL" layoutX="50.0" layoutY="273.0" promptText="URL" />
-   <Button fx:id="ButtonAtras" layoutX="322.0" layoutY="330.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
+   <Button fx:id="ButtonAtras" layoutX="322.0" layoutY="330.0" mnemonicParsing="false" onAction="#Atras" prefHeight="26.0" prefWidth="78.0" text="Atrás" />
    <Separator layoutX="297.0" layoutY="73.0" orientation="VERTICAL" prefHeight="321.0" prefWidth="1.0" />
    <RadioButton fx:id="gRock" layoutX="383.0" layoutY="140.0" mnemonicParsing="false" text="Rock" />
    <RadioButton fx:id="gPop" layoutX="383.0" layoutY="167.0" mnemonicParsing="false" text="Pop" />

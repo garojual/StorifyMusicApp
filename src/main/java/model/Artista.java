@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ *Representa el artista con sus respectivos atributos y lista de canciones
+ * @author Juliana
+ * @author Juan
+ */
 public class Artista implements Comparable<Artista>,Serializable {
 
     private String nombre;

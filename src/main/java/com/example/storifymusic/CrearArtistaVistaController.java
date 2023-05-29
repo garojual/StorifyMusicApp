@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.util.EnumSet;
 import java.util.function.Consumer;
 
+/**
+ * Controlador que se encarga de la vista de crear ucanciones
+ * @author Juliana
+ * @author Juan
+ */
 public class CrearArtistaVistaController {
 
     private HelloApplication aplicacion;
@@ -40,13 +45,21 @@ public class CrearArtistaVistaController {
     //private Reproductor reproductor = Reproductor.getReproductor();
 
 
-
+    /**
+     * Establece una instancia de la aplicacion
+     * @param aplicacion
+     */
     public void setAplicacion(HelloApplication aplicacion) {
         this.aplicacion = aplicacion;
         aplicacion.getArtistas().inorden();
 
     }
 
+    /**
+     * Crea un nuevo artista en la interfaz
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void crearArtista(ActionEvent event) throws IOException {
         String nombre = txtArtista.getText();

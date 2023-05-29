@@ -9,14 +9,27 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import netscape.javascript.JSObject;
 
-
+/**
+ * Clase encargada de realizar la conexion para la reproduccion de las canciones
+ * @author Juliana
+ * @author Juan
+ */
 public class YoutubePlayer extends Application {
     private String YOUTUBE_VIDEO_ID ;
 
+    /**
+     * Constructor de la clase
+     * @param youtube_video_id
+     */
     public YoutubePlayer(String youtube_video_id) {
         YOUTUBE_VIDEO_ID = youtube_video_id;
     }
 
+    /**
+     * configura un WebView para mostrar contenido web y
+     * carga una página HTML que contiene un reproductor de video de YouTube
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         WebView webView = new WebView();
@@ -58,7 +71,10 @@ public class YoutubePlayer extends Application {
         launch(args);
     }
 
-    // Retorna el código HTML necesario para mostrar el reproductor de YouTube
+    /**
+     * Retorna el código HTML necesario para mostrar el reproductor de YouTube
+     * @return
+     */
     private String getYouTubeHTML() {
         return "<html><body>" +
                 "<div id='player'></div>" +

@@ -4,6 +4,11 @@ import javafx.scene.image.ImageView;
 
 import java.io.Serializable;
 
+/**
+ * Representa la cancion con sus respectivos atributos
+ * @author Juliana
+ * @author Juan
+ */
 public class Cancion implements Serializable {
 
     private String codigo;
@@ -17,6 +22,16 @@ public class Cancion implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor con todos los parametros
+     * @param codigo
+     * @param nombreCancion
+     * @param nombreAlbum
+     * @param anio
+     * @param genero
+     * @param URL
+     * @param artista
+     */
     public Cancion(String codigo, String nombreCancion, String nombreAlbum, String anio, Genero genero, String URL, Artista artista) {
         this.codigo = codigo;
         this.nombreCancion = nombreCancion;
@@ -27,6 +42,12 @@ public class Cancion implements Serializable {
         this.artista = artista;
     }
 
+    /**
+     * Constructor solo con los parametros principales
+     * @param codigo
+     * @param nombreCancion
+     * @param artista
+     */
     public Cancion(String codigo, String nombreCancion, Artista artista) {
         this.codigo = codigo;
         this.nombreCancion = nombreCancion;

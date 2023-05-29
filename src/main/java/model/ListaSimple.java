@@ -2,6 +2,12 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Estructura propia de lista simpple generica
+ * @author Juliana
+ * @author Juan
+ * @param <T>
+ */
 public class ListaSimple<T> implements Serializable {
 
     private NodoLista<T> nodoPrimero;
@@ -15,7 +21,11 @@ public class ListaSimple<T> implements Serializable {
         nodoPrimero = null;
         tamanio = 0;
     }
-    //Agregar al inicio de la lista
+
+    /**
+     * Agregar al inicio de la lista
+     * @param valorNodo
+     */
     public void agregarInicio(T valorNodo) {
 
         NodoLista<T> nuevoNodo = new NodoLista<>(valorNodo);
@@ -32,7 +42,10 @@ public class ListaSimple<T> implements Serializable {
         tamanio++;
     }
 
-    //Agregar al final de la lista
+    /**
+     * Agregar al final de la lista
+     * @param valorNodo
+     */
     public void agregarfinal(T valorNodo) {
 
         NodoLista<T> nodo = new NodoLista<>(valorNodo);
@@ -47,7 +60,11 @@ public class ListaSimple<T> implements Serializable {
         tamanio++;
     }
 
-    //Obtener Nodo el valor de un Nodo
+    /**
+     * Obtener Nodo el valor de un Nodo
+     * @param indice
+     * @return
+     */
     public T obtenerValorNodo(int indice) {
 
         NodoLista<T> nodoTemporal = null;
@@ -71,7 +88,11 @@ public class ListaSimple<T> implements Serializable {
     }
 
 
-    //Verificar si indice es valido
+    /**
+     * Verificar si indice es valido
+     * @param indice
+     * @return
+     */
     private boolean indiceValido(int indice) {
         if( indice>=0 && indice<tamanio ) {
             return true;
@@ -80,26 +101,15 @@ public class ListaSimple<T> implements Serializable {
     }
 
 
-    //Verificar si la lista esta vacia
+    /**
+     * Verificar si la lista esta vacia
+     * @return
+     */
     public boolean estaVacia() {
         return nodoPrimero == null;
     }
 
 
-    /**
-     * Imprime en consola la lista enlazada
-     */
-    public void imprimirLista() {
-
-        NodoLista<T> aux = nodoPrimero;
-
-        while(aux!=null) {
-            System.out.print( aux.getDato()+"\t" );
-            aux = aux.getSiguiente();
-        }
-
-        System.out.println();
-    }
 
     //Eliminar dado el valor de un nodo
     public T eliminar(T dato){
@@ -159,7 +169,11 @@ public class ListaSimple<T> implements Serializable {
         throw new RuntimeException("Lista vacía");
     }
 
-
+    /**
+     * obtiene un nodo de la lista a través de un índice
+     * @param indice
+     * @return
+     */
     private NodoLista<T> obtenerNodo(int indice) {
 
         if(indice>=0 && indice<tamanio) {
