@@ -26,7 +26,7 @@
       <Button layoutX="300.0" layoutY="282.0" mnemonicParsing="false" onAction="#deshacer" prefHeight="25.0" prefWidth="82.0" text="Deshacer" />
       <Button layoutX="300.0" layoutY="319.0" mnemonicParsing="false" onAction="#rehacer" prefHeight="25.0" prefWidth="82.0" text="Rehacer" />
       <Label fx:id="lblUsuario" layoutX="270.0" layoutY="42.0" text="Usuario" />
-      <Button layoutX="62.0" layoutY="319.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+      <Button layoutX="62.0" layoutY="319.0" mnemonicParsing="false" onAction="#comprobarInfoBuscar" text="Buscar" />
       <RadioButton fx:id="gTitulo" layoutX="19.0" layoutY="360.0" mnemonicParsing="false" text="Titulo" />
       <RadioButton fx:id="gArtista" layoutX="125.0" layoutY="360.0" mnemonicParsing="false" text="Artista" />
       <RadioButton fx:id="gGenero" layoutX="227.0" layoutY="360.0" mnemonicParsing="false" text="Genero" />
